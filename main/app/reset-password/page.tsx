@@ -1,12 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from "next/navigation";
 import { resetPassword } from '../../firebase'; // Import the reset password function
 
 export default function ResetPasswordPage() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const router = useRouter();
 
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,6 +17,7 @@ export default function ResetPasswordPage() {
     try {
       await resetPassword(email);
       setMessage('Password reset email sent! Check your inbox.');
+      router.push("/login");
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
