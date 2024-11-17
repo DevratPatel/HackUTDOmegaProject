@@ -19,14 +19,11 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-1">
+            <div className="text-sm text-muted-foreground ml-auto pr-3">
+              Welcome, User
+            </div>
             <Button variant="ghost" asChild>
-              <Link href="/">Home</Link>
-            </Button>
-            <Button variant="ghost" asChild>
-              <Link href="/about">About</Link>
-            </Button>
-            <Button variant="ghost" asChild>
-              <Link href="/projects">Projects</Link>
+              <Link href="/projects">Login</Link>
             </Button>
           </div>
 
