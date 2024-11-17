@@ -1,13 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { auth } from "@/firebase";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [username, setUsername] = useState<string | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUsername(user.displayName || user.email || "User");
+      } else {
+        setUsername(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <nav className="border-b bg-background">
@@ -19,11 +33,13 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-1">
-            <div className="text-sm text-muted-foreground ml-auto pr-3">
-              Welcome, User
+            <div className="welcome-message text-sm text-muted-foreground ml-auto pr-3">
+              {username ? `Welcome, ${username}` : "Welcome, Guest"}
             </div>
             <Button variant="ghost" asChild>
-              <Link href="./">Log Out</Link>
+              <Link href="./" onClick={() => auth.signOut()}>
+                Log Out
+              </Link>
             </Button>
           </div>
 
@@ -39,7 +55,7 @@ export default function Navbar() {
               <SheetContent side="right">
                 <div className="flex flex-col space-y-4 mt-4">
                   <div className="text-sm text-muted-foreground">
-                    Welcome, User
+                    {username ? `Welcome, ${username}` : "Welcome, Guest"}
                   </div>
                   <Button variant="ghost" asChild>
                     <Link href="./login">Login</Link>
