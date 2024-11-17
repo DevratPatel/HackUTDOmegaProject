@@ -23,7 +23,7 @@ export default function Navbar() {
               Welcome, User
             </div>
             <Button variant="ghost" asChild>
-              <Link href="./login">Login</Link>
+              <Link href="./">Log Out</Link>
             </Button>
           </div>
 

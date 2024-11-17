@@ -15,9 +15,8 @@ export default function ResetPasswordPage() {
     setMessage('');
     setError('');
     try {
-      await resetPassword(email);
+      await resetPassword(email, router);
       setMessage('Password reset email sent! Check your inbox.');
-      router.push("/login");
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);

@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth';
+import { useRouter } from "next/navigation";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,6 +26,7 @@ const signInWithGoogle = async () => {
         const result = await signInWithPopup(auth, googleProvider);
         console.log("User logged in:", result.user);
         alert(`Welcome, ${result.user.displayName}`);
+        return result.user;
     } catch (error) {
         console.error("Error logging in with Google:", error.message);
         alert("Login failed. Please try again.");
@@ -36,17 +38,19 @@ const signInWithEmail = async (email, password) => {
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         console.log("User logged in:", userCredential.user);
-        alert("Login successful!");
+        alert(`Welcome, ${userCredential.user.email}`);
+        return userCredential.user;
     } catch (error) {
         console.error("Error logging in with email/password:", error.message);
         alert("Invalid email or password.");
     }
 };
 
-const resetPassword = async (email) => {
+const resetPassword = async (email, router) => {
     try {
         await sendPasswordResetEmail(auth, email);
         console.log('Password reset email sent successfully');
+        router.push("/");
       } 
     catch (error) {
         console.error('Error sending password reset email:', error.message);

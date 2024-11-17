@@ -16,7 +16,7 @@ export default function SignUpPage() {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       console.log('User created:', userCredential.user);
       alert('Sign-up successful! You can now log in.');
-      router.push("/login");
+      router.push("/");
     } catch (error) {
         if (error instanceof Error) {
             // TypeScript now knows error is an instance of Error
