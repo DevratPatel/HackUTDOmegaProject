@@ -7,7 +7,7 @@
 - /requirements.txt contains the required packages
 
 # API Endpoints
-## Host: https://flask-backend-phi.vercel.app
+## Host: https://hackutd-backend.vercel.app/
 - POST: /postMessage
 - Body: {"message": "Content", "convoId": "Optional"}
 - Response: {"reply": "Reply", "suggestions": [{}, {}, {}]}
