@@ -40,29 +40,15 @@ export default function Navbar() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right">
-                <div className="flex flex-col space-y-4 mt-8">
-                  <Button
-                    variant="ghost"
-                    asChild
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <Link href="/">Home</Link>
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    asChild
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <Link href="/about">About</Link>
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    asChild
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <Link href="/projects">Projects</Link>
-                  </Button>
-                </div>
+                <Button variant="ghost" asChild>
+                  <Link href="/">Home</Link>
+                </Button>
+                <Button variant="ghost" asChild>
+                  <Link href="/about">About</Link>
+                </Button>
+                <Button variant="ghost" asChild>
+                  <Link href="/projects">Projects</Link>
+                </Button>
               </SheetContent>
             </Sheet>
           </div>
