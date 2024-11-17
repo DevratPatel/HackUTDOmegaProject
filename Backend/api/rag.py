@@ -1,4 +1,4 @@
-def get_response():
+def get_response(message):
     return "something"
 
 

@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
-import rag
+from api import rag
+from flask_cors import CORS
 app = Flask(__name__)
+CORS(app) 
 
 history = {}
 
@@ -18,9 +20,10 @@ def post_message():
     if convo_id is not None:
         messages = history[convo_id]
         messages.append(message)
-        history[convo_id].append(message)
     else:
         messages = [message]
+        history[convo_id] = []
+        history[convo_id].append(message)
 
     reply = rag.get_response(messages)
     suggestions = [rag.get_suggesstions(message)]
