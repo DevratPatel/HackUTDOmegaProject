@@ -4,7 +4,7 @@ import Navbar from "../components/ui/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import { Package } from "lucide-react"; // Import the package icon from lucide-react
+//import { Package } from "lucide-react"; // Import the package icon from lucide-react
 
 export const metadata: Metadata = {
   title: "HackUTD Omega Project",
